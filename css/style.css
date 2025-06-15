@@ -1,0 +1,378 @@
+/* ------------------ RESET BÁSICO ------------------ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: #f8f8f8; /* Un blanco muy suave, casi blanco puro */
+  color: #333; /* Color de texto oscuro para buen contraste */
+  padding: 1rem;
+}
+
+/* ------------------ HEADER & NAV ------------------ */
+header {
+  background-color: #00357a; /* Azul marino oscuro */
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white; /* Texto blanco para contrastar con el azul marino */
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------ MAIN CONTENT ------------------ */
+main {
+  margin-top: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+/* ------------------ SLOGAN SECTION ------------------ */
+#slogan { /* Selector actualizado para el ID 'slogan' */
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#slogan h1 {
+    font-size: 2.8rem;
+    color: #00357a; /* Azul marino para el título principal */
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+
+/* ------------------ TASK INPUT & BUTTON GROUP ------------------ */
+.doItSection { /* Selector actualizado para la clase 'doItSection' */
+  display: flex;
+  flex-direction: column; /* Cambiado a columna por defecto para mejor responsividad móvil */
+  max-width: 100%;
+  gap: 1rem; /* Espacio entre input y botón */
+  margin-bottom: 25px; /* Espacio debajo del grupo */
+  align-items: stretch; /* Estira los elementos para que tengan el mismo ancho */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+  border-radius: 8px;
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 15px; /* Padding interno */
+}
+
+#doItInput { /* Selector actualizado para el ID 'doItInput' */
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: white; /* Fondo blanco para el input */
+  border: 1px solid #ccc; /* Borde suave */
+  color: #333; /* Color de texto oscuro */
+  border-radius: 5px; /* Bordes ligeramente redondeados */
+  outline: none; /* Eliminar el contorno al enfocar */
+  transition: border-color 0.3s ease;
+}
+
+#doItInput:focus {
+  border-color: #00357a; /* Borde azul marino al enfocar */
+}
+
+#doItInput::placeholder {
+    color: #a0a0a0;
+    font-style: italic;
+}
+
+#doItButton { /* Selector actualizado para el ID 'doItButton' */
+  padding: 0.75rem 1.5rem; /* Ajustado el padding para un mejor aspecto de botón */
+  font-size: 1rem;
+  background-color: #00357a; /* Azul marino para el botón */
+  color: white; /* Texto blanco en el botón */
+  border: none; /* Sin borde en el botón */
+  cursor: pointer;
+  border-radius: 5px; /* Bordes ligeramente redondeados */
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Transición suave para el hover y click */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra para el botón */
+}
+
+#doItButton:hover {
+  background-color: #002c63; /* Un azul marino ligeramente más oscuro al pasar el cursor */
+  transform: translateY(-1px); /* Efecto de "levantar" ligeramente */
+}
+
+#doItButton:active {
+    transform: translateY(0);
+    box-shadow: none; /* Elimina la sombra al hacer clic */
+}
+
+/* ------------------ TASK CONTROLS (FILTERS & SEARCH) ------------------ */
+.taskControl { /* Selector actualizado para la clase 'taskControl' */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px; /* Espacio entre filtros y buscador */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    padding: 10px; /* Pequeño padding para el contenedor de controles */
+    background-color: #f0f0f0; /* Fondo ligeramente gris para los controles */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.groupFilter { /* Selector actualizado para la clase 'groupFilter' */
+    display: flex;
+    gap: 8px;
+    background-color: #e0e0e0; /* Fondo para agrupar los botones de filtro */
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.filterButton { /* Selector actualizado para la clase 'filterButton' */
+    background-color: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filterButton:hover:not(.active) {
+    background-color: #d1d1d1;
+}
+
+.filterButton.active {
+    background-color: #00357a; /* Azul marino para el filtro activo */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#taskSearch { /* ID del buscador es el mismo */
+    flex-grow: 1;
+    max-width: 300px; /* Limitar el ancho del input de búsqueda */
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Barra de búsqueda redondeada */
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+#taskSearch:focus {
+    border-color: #00357a;
+    box-shadow: 0 0 0 3px rgba(0, 53, 122, 0.25); /* Sombra azul marino suave al enfocar */
+}
+
+
+/* ------------------ TASK LIST SECTION ------------------ */
+#taskListSection { /* Selector actualizado para el ID 'taskListSection' */
+  padding: 0;
+  margin-top: 0;
+}
+
+/* Estilo para cada ítem de tarea (clases internas no cambian) */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  background-color: #ffffff; /* Fondo blanco para las tareas */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.task-item:hover {
+  background-color: #f5f5f5;
+}
+
+.task-main-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: 15px;
+}
+
+.task-checkbox {
+  margin-right: 12px;
+  min-width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #00357a; /* Azul marino para el checkbox marcado */
+  transform: scale(1.1);
+}
+
+.task-text {
+  flex-grow: 1;
+  font-size: 1.1rem;
+  color: #333;
+  word-break: break-word;
+  cursor: text;
+  padding: 2px 0;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.task-item.completed {
+  background-color: #e6f0fa; /* Un azul muy claro para tareas completadas */
+  border-color: #c0d8f0;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.delete-task-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #dc3545; /* Rojo para eliminar (color estándar de alerta) */
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-task-btn:hover {
+  background-color: #ffebeb;
+  color: #c82333;
+}
+
+/* Opcional: Estilos para Fecha límite y Etiquetas (si las implementas) */
+.task-due-date {
+  font-size: 0.85rem;
+  color: #6c757d;
+  background-color: #e9ecef;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.task-tag {
+  font-size: 0.8rem;
+  background-color: #00357a; /* Azul marino para las etiquetas */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+/* ------------------ NAVIGATION SECTIONS ------------------ */
+#startSection, #focusSection, #finishSection { /* Selectores actualizados */
+    padding: 50px 20px; /* Ajustado el padding para que no se pegue a los bordes en el escritorio */
+    margin-top: 50px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+#startSection h2, #focusSection h2, #finishSection h2 {
+    color: #00357a; /* Azul marino para los títulos de sección */
+    margin-bottom: 10px;
+}
+
+/* ------------------ FOOTER ------------------ */
+footer {
+  background-color: #00357a; /* Azul marino oscuro */
+  color: white; /* Texto blanco para contrastar */
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Sombra en la parte superior del footer */
+  border-radius: 8px 8px 0 0; /* Bordes superiores redondeados */
+}
+
+/* ------------------ RESPONSIVE: TABLET ------------------ */
+@media (min-width: 768px) {
+  body {
+    padding: 2rem;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* El .doItSection se comporta como un formulario */
+  .doItSection {
+    flex-direction: row; /* En fila en pantallas más grandes */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px; /* Un ancho máximo para el grupo de input/botón */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #doItInput {
+    flex: 1; /* Ocupa el espacio disponible */
+    margin-bottom: 0; /* Elimina el margen inferior cuando están en fila */
+  }
+
+  #doItButton {
+    /* flex: 0 0 150px; /* Ancho fijo para el botón, no se encoge */
+    max-width: 150px; /* Ancho máximo para el botón en tablet/desktop */
+    margin-bottom: 0;
+  }
+
+  .taskControl { /* Comportamiento en tablet */
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .groupFilter { /* Comportamiento de los filtros en tablet */
+      justify-content: flex-start;
+  }
+}
+
+/* ------------------ RESPONSIVE: DESKTOP ------------------ */
+@media (min-width: 1024px) {
+  main {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 20px; /* Añadido padding para que el contenido no se pegue a los bordes del main */
+  }
+
+  section {
+    padding: 1rem 2rem;
+  }
+
+  .doItSection {
+    max-width: 800px; /* Ajustado el ancho máximo para el escritorio */
+  }
+
+  #doItButton {
+    max-width: 180px; /* Un poco más ancho el botón en desktop */
+  }
+
+  #taskSearch {
+    max-width: 350px; /* Un poco más ancho el buscador en desktop */
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oDo</title>
+  <link rel="shortcut icon" href="assets/img/favicon2.ico" type="image/png">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#start">Start</a>
+      <a href="#focus">Focus</a>
+      <a href="#finish">Finish</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="slogan">
+      <h1>Think less. Do more.</h1>
+    </section>
+
+    <section>
+      <div class="doItSection">
+        <input type="text" id="doItInput" placeholder="What do you want to do?" aria-label="Write a task">
+        <button id="doItButton">Do It</button>
+
+        <div class="taskControl">
+          <div class="groupFilter" role="group" aria-label="Filtrar tareas">
+            <button class="filterButton active" id="filterAll">Todos</button>
+            <button class="filterButton" id="filterActive">Activos</button>
+            <button class="filterButton" id="filterCompleted">Completados</button>
+          </div>
+          <input type="search" id="taskSearch" placeholder="Search Tasks..." aria-label="Search Tasks">
+        </div>
+
+      </div>
+      <div id="taskListSection">
+      </div>
+      </section>
+
+      <section id="startSection">
+        <h2>Start adding tasks</h2>
+        <p>Start writing your tasks and putting the house in order.</p>
+      </section>
+
+    <section id="focusSection">
+        <h2>Focus on tasks that need to be finishedt</h2>
+        <p>Mind this tasks an finish the job.</p>
+    </section>
+
+    <section id="finishSection">
+        <h2>Look the done tasks</h2>
+        <p>In this section you can see the tasks that you have done.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Omar Lamadrid - linkedin.com/in/lamadrid95</p>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
