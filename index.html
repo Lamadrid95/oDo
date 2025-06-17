@@ -10,11 +10,14 @@
 <body>
 
   <header>
-    <nav>
-      <a href="#start">Start</a>
-      <a href="#focus">Focus</a>
-      <a href="#finish">Finish</a>
-    </nav>
+        <div class="taskControl">
+          <div class="groupFilter" role="group" aria-label="Filtrar tareas">
+            <button class="filterButton active" id="filterAll">All</button>
+            <button class="filterButton" id="filterActive">Active</button>
+            <button class="filterButton" id="filterCompleted">Completed</button>
+          </div>
+          <input type="search" id="taskSearch" placeholder="Search Tasks..." aria-label="Search Tasks">
+        </div>
   </header>
 
   <main>
@@ -27,14 +30,7 @@
         <input type="text" id="doItInput" placeholder="What do you want to do?" aria-label="Write a task">
         <button id="doItButton">Do It</button>
 
-        <div class="taskControl">
-          <div class="groupFilter" role="group" aria-label="Filtrar tareas">
-            <button class="filterButton active" id="filterAll">All</button>
-            <button class="filterButton" id="filterActive">Active</button>
-            <button class="filterButton" id="filterCompleted">Completed</button>
-          </div>
-          <input type="search" id="taskSearch" placeholder="Search Tasks..." aria-label="Search Tasks">
-        </div>
+
 
       </div>
       <div id="taskListSection">
