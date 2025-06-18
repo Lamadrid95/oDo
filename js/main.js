@@ -47,8 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Mostrar/ocultar botón de "Eliminar completadas"
     const hasCompleted = tasks.some((t) => t.completed);
-    clearBtn.style.display =
-      hasCompleted && currentFilter !== "active" ? "inline-block" : "none";
+    if (hasCompleted && currentFilter !== "active") {
+      clearBtn.classList.add("show");
+    } else {
+      clearBtn.classList.remove("show");
+    }
   };
 
   // Guarda y re-renderiza
