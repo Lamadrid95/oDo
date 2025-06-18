@@ -100,3 +100,46 @@ document.addEventListener("DOMContentLoaded", () => {
   tasks = loadTasksFromStorage();
   renderTasks();
 });
+
+import { translations } from "./lang.js";
+
+let currentLang = "en";
+
+const elements = {
+  slogan: document.querySelector("#slogan h1"),
+  doItInput: document.querySelector("#doItInput"),
+  doItButton: document.querySelector("#doItButton"),
+  filterAll: document.querySelector("#filterAll"),
+  filterActive: document.querySelector("#filterActive"),
+  filterCompleted: document.querySelector("#filterCompleted"),
+  clearCompleted: document.querySelector("#clearCompleted"),
+  startSection: document.querySelector("#startSection h2"),
+  focusSection: document.querySelector("#focusSection h2"),
+  finishSection: document.querySelector("#finishSection h2"),
+};
+
+const applyLanguage = () => {
+  const t = translations[currentLang];
+
+  elements.slogan.textContent = t.slogan;
+  elements.doItInput.placeholder = t.doItPlaceholder;
+  elements.doItButton.textContent = t.doItButton;
+  elements.filterAll.textContent = t.filterAll;
+  elements.filterActive.textContent = t.filterActive;
+  elements.filterCompleted.textContent = t.filterCompleted;
+  elements.clearCompleted.textContent = t.clearCompleted;
+  elements.startSection.textContent = t.start;
+  elements.focusSection.textContent = t.focus;
+  elements.finishSection.textContent = t.finish;
+
+  document.getElementById("langToggle").textContent =
+    currentLang === "en" ? "Español" : "English";
+};
+
+// Toggle idioma
+document.getElementById("langToggle").addEventListener("click", () => {
+  currentLang = currentLang === "en" ? "es" : "en";
+  applyLanguage();
+});
+
+applyLanguage(); // Inicializa
