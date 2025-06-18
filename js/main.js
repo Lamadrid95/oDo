@@ -1,18 +1,13 @@
-// main.js - V0.5 Remaster 🔥 Modular y funcional
-
-import {
-  formatDateTime,
-  generateId,
-  normalizeTask,
-  saveTasksToStorage,
-  loadTasksFromStorage,
-} from "./utils.js";
+import { generateId, normalizeTask } from "./utils.js";
+import { loadTasksFromStorage, saveTasksToStorage } from "./storage.js";
+import { createTaskElement } from "./dom.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (s) => document.querySelector(s);
   const input = $("#doItInput");
   const button = $("#doItButton");
   const taskList = $("#taskListSection");
+  const clearBtn = $("#clearCompleted");
 
   const filterButtons = {
     all: $("#filterAll"),
@@ -23,85 +18,55 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
   let tasks = [];
 
-  // Cargar tareas desde localStorage
-  const loadTasks = () => {
-    tasks = loadTasksFromStorage();
+  // Renderiza las tareas según el filtro actual
+  const renderTasks = () => {
+    taskList.innerHTML = "";
+
+    tasks.forEach((task) => {
+      const shouldShow =
+        currentFilter === "all" ||
+        (currentFilter === "active" && !task.completed) ||
+        (currentFilter === "completed" && task.completed);
+
+      if (!shouldShow) return;
+
+      const taskElement = createTaskElement(
+        task,
+        (checked) => {
+          task.completed = checked;
+          saveAndRender();
+        },
+        () => {
+          tasks = tasks.filter((t) => t.id !== task.id);
+          saveAndRender();
+        }
+      );
+
+      taskList.appendChild(taskElement);
+    });
+
+    // Mostrar/ocultar botón de "Eliminar completadas"
+    const hasCompleted = tasks.some((t) => t.completed);
+    clearBtn.style.display =
+      hasCompleted && currentFilter !== "active" ? "inline-block" : "none";
   };
 
-  // Guardar + volver a renderizar
+  // Guarda y re-renderiza
   const saveAndRender = () => {
     saveTasksToStorage(tasks);
     renderTasks();
   };
 
-  // Renderizar tareas
-  const renderTasks = () => {
-    taskList.innerHTML = "";
-    tasks.forEach((task) => {
-      if (
-        (currentFilter === "active" && task.completed) ||
-        (currentFilter === "completed" && !task.completed)
-      )
-        return;
-
-      const taskElement = document.createElement("div");
-      taskElement.classList.add("task-item");
-      if (task.completed) taskElement.classList.add("completed");
-
-      taskElement.innerHTML = `
-        <div class="task-main-content">
-          <input type="checkbox" class="task-checkbox" ${
-            task.completed ? "checked" : ""
-          }>
-          <span class="task-text">${task.text}</span>
-        </div>
-        <div class="task-actions">
-          <small class="task-due-date">${formatDateTime(task.createdAt)}</small>
-          <button class="delete-task-btn" aria-label="Eliminar tarea">✕</button>
-        </div>
-      `;
-
-      // Checkbox toggle
-      taskElement
-        .querySelector(".task-checkbox")
-        .addEventListener("change", (e) => {
-          task.completed = e.target.checked;
-          saveAndRender();
-        });
-
-      // Eliminar tarea
-      taskElement
-        .querySelector(".delete-task-btn")
-        .addEventListener("click", () => {
-          tasks = tasks.filter((t) => t.id !== task.id);
-          saveAndRender();
-        });
-
-      taskList.appendChild(taskElement);
-    });
-  };
-
-  // Crear nueva tarea
+  // Crea una nueva tarea
   const createTask = () => {
     const text = input.value.trim();
     if (!text) return;
-
-    const newTask = normalizeTask({ text });
-    tasks.push(newTask);
+    tasks.push(normalizeTask({ text }));
     input.value = "";
     saveAndRender();
   };
 
-  // Eventos
-  button.addEventListener("click", createTask);
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      createTask();
-    }
-  });
-
-  // Filtros
+  // Cambia el filtro activo
   const setActiveFilter = (key) => {
     currentFilter = key;
     Object.entries(filterButtons).forEach(([type, btn]) => {
@@ -110,11 +75,25 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTasks();
   };
 
+  // EVENTOS
+  button.addEventListener("click", createTask);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      createTask();
+    }
+  });
+
   Object.entries(filterButtons).forEach(([key, btn]) => {
     btn.addEventListener("click", () => setActiveFilter(key));
   });
 
-  // Inicializar
-  loadTasks();
+  clearBtn.addEventListener("click", () => {
+    tasks = tasks.filter((task) => !task.completed);
+    saveAndRender();
+  });
+
+  // INIT
+  tasks = loadTasksFromStorage();
   renderTasks();
 });

@@ -154,6 +154,31 @@ section {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+.clear-completed-btn {
+  padding: 10px 18px;
+  background-color: rgba(0, 53, 122, 0.85); /* azul marino translúcido */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 0.95rem;
+  backdrop-filter: blur(4px);
+}
+
+.clear-completed-btn:hover {
+  background-color: rgba(0, 53, 122, 1);
+  transform: translateY(-2px);
+}
+
+.clear-completed-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+
 #taskSearch { /* ID del buscador es el mismo */
     flex-grow: 1;
     max-width: 300px; /* Limitar el ancho del input de búsqueda */

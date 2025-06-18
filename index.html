@@ -16,8 +16,10 @@
             <button class="filterButton" id="filterActive">Active</button>
             <button class="filterButton" id="filterCompleted">Completed</button>
           </div>
-          <input type="search" id="taskSearch" placeholder="Search Tasks..." aria-label="Search Tasks">
-        </div>
+          <button id="clearCompleted" class="clear-completed-btn" aria-label="Eliminar tareas completadas">
+          🧹 Clear Completed
+         </button>
+        </div>        
   </header>
 
   <main>
@@ -29,8 +31,6 @@
       <div class="doItSection">
         <input type="text" id="doItInput" placeholder="What do you want to do?" aria-label="Write a task">
         <button id="doItButton">Do It</button>
-
-
 
       </div>
       <div id="taskListSection">
@@ -57,6 +57,8 @@
   <footer>
     <p>© 2025 Omar Lamadrid - linkedin.com/in/lamadrid95</p>
   </footer>
+  <script type="module" src="js/dom.js"></script>
+  <script type="module" src="js/storage.js"></script>
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/utils.js"></script>
 </body>
