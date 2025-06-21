@@ -101,9 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTasks();
 });
 
-import { translations } from "./lang.js";
+import { translations, getSavedLang, setSavedLang } from "./lang.js";
 
-let currentLang = "en";
+let currentLang = getSavedLang();
 
 const elements = {
   slogan: document.querySelector("#slogan h1"),
@@ -116,11 +116,11 @@ const elements = {
   startSection: document.querySelector("#startSection h2"),
   focusSection: document.querySelector("#focusSection h2"),
   finishSection: document.querySelector("#finishSection h2"),
+  langImg: document.querySelector("#langToggle img"),
 };
 
 const applyLanguage = () => {
   const t = translations[currentLang];
-
   elements.slogan.textContent = t.slogan;
   elements.doItInput.placeholder = t.doItPlaceholder;
   elements.doItButton.textContent = t.doItButton;
@@ -132,13 +132,13 @@ const applyLanguage = () => {
   elements.focusSection.textContent = t.focus;
   elements.finishSection.textContent = t.finish;
 
-  document.getElementById("langToggle").textContent =
-    currentLang === "en" ? "Español" : "English";
+  elements.langImg.src = t.flag;
+  elements.langImg.alt = t.alt;
 };
 
-// Toggle idioma
 document.getElementById("langToggle").addEventListener("click", () => {
   currentLang = currentLang === "en" ? "es" : "en";
+  setSavedLang(currentLang);
   applyLanguage();
 });
 

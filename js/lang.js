@@ -8,9 +8,11 @@ export const translations = {
     doItPlaceholder: "¿Qué quieres hacer?",
     doItButton: "Nueva Tarea",
     filterAll: "Todos",
-    filterActive: "Activas",
+    filterActive: "Pendientes",
     filterCompleted: "Completadas",
     clearCompleted: "Eliminar completadas",
+    flag: "assets/img/englishButton.png",
+    alt: "Switch to English",
   },
   en: {
     slogan: "Think less. Do more.",
@@ -20,8 +22,14 @@ export const translations = {
     doItPlaceholder: "What do you want to do?",
     doItButton: "Do It",
     filterAll: "All",
-    filterActive: "Active",
+    filterActive: "Pending",
     filterCompleted: "Completed",
     clearCompleted: "Clear Completed",
+    flag: "assets/img/spanishButton.png",
+    alt: "Cambiar a Español",
   },
 };
+
+export const getSavedLang = () => localStorage.getItem("odoLang") || "en";
+
+export const setSavedLang = (lang) => localStorage.setItem("odoLang", lang);
